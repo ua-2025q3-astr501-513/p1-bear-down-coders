@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: p1-bear-down-coders
+Version: 0.1.0
+Summary: project
+Author: placeholder
+License: this is license it has the license in it
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Dynamic: license-file
