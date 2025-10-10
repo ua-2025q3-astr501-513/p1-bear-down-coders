@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 class orbit_integrator:
     """
     Integrator for a particle moving in a central 1/r^2 potential.
-    Supports Verlet, RK4, and Yoshida 4th-order symplectic schemes.
+    Supports leapfrog, RK4, and Yoshida 4th-order symplectic schemes.
     """
 
-    def __init__(self, mu=1.0, h=0.01, method="verlet"):
+    def __init__(self, mu=1.0, h=0.01, method="leapfrog"):
         """
         Parameters
         ----------
@@ -16,13 +16,13 @@ class orbit_integrator:
         h : float
             Time step size.
         method : str
-            Integration method: 'verlet', 'rk4', or 'yoshida4'.
+            Integration method: 'leapfrog', 'rk4', or 'yoshida4'.
         """
         self.mu = mu
         self.h = h
         self.method = method.lower()
-        if self.method not in ["verlet", "rk4", "yoshida4"]:
-            raise ValueError("method must be 'verlet', 'rk4', or 'yoshida4'")
+        if self.method not in ["leapfrog", "rk4", "yoshida4"]:
+            raise ValueError("method must be 'leapfrog', 'rk4', or 'yoshida4'")
 
         # storage
         self.positions = []
@@ -42,7 +42,7 @@ class orbit_integrator:
     # -------------------------
     # Integration methods
     # -------------------------
-    def verlet_step(self, x, v):
+    def leapfrog_step(self, x, v):
         a = self.accel(x)
         v_half = v + 0.5 * self.h * a
         x_new = x + self.h * v_half
@@ -113,8 +113,8 @@ class orbit_integrator:
         self.energies = [self.energy(x, v)]
 
         for _ in range(Nsteps):
-            if self.method == "verlet":
-                x, v = self.verlet_step(x, v)
+            if self.method == "leapfrog":
+                x, v = self.leapfrog_step(x, v)
             elif self.method == "rk4":
                 x, v = self.rk4_step(x, v)
             elif self.method == "yoshida4":
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     x0 = [1.0, 0.0, 0.0]
     v0 = [0.0, 1.0, 0.0]
 
-    methods = ["verlet", "rk4", "yoshida4"]
+    methods = ["leapfrog", "rk4", "yoshida4"]
     for m in methods:
         sim = orbit_integrator(mu=mu, h=h, method=m)
         sim.integrate(x0, v0, N)
