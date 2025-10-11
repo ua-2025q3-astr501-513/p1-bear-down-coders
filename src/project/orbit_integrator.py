@@ -96,7 +96,9 @@ class orbit_integrator:
     # Energy computation
     # -------------------------
     def energy(self, x, v):
-        return 0.5 * np.dot(v, v) + self.mu / np.dot(x, x)
+        r = np.linalg.norm(x)
+        return 0.5 * np.dot(v, v) - self.mu / r
+
 
     # -------------------------
     # Main integration routine
