@@ -3,8 +3,8 @@ from orbit_integrator import orbit_integrator
 mu = 1.0
 h = 0.01
 N = 100000
-x0 = [1.0, 1.0, 1.0]
-v0 = [0.0, 1.0, 0.0]
+x0 = [1.0, 0.0, 0.0]
+v0 = [0.0, 1.0, 1.0]
 
 methods = ["leapfrog", "rk4", "yoshida4"]
 for m in methods:
