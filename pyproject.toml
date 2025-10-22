@@ -1,0 +1,14 @@
+[project]
+name = "p1-bear-down-coders"
+version = "0.1.0"
+description = "project"
+authors = [{ name = "placeholder" }]
+license = { file = "LICENSE" }
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib"
+]
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
